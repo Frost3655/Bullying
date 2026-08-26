@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Solutions | منصة التوعية ومكافحة التنمر</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#121624',
+                        cardBg: '#1a2035',
+                        cardHover: '#232a45',
+                        pinkAccent: '#ff2e63',
+                        pinkGlow: '#ff0055',
+                        cyanAccent: '#05d9e8',
+                        lightText: '#e2e8f0',
+                        mutedText: '#94a3b8'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'pink-glow': '0 0 25px rgba(255, 46, 99, 0.35)',
+                        'cyan-glow': '0 0 25px rgba(5, 217, 232, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #121624;
+            color: #e2e8f0;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #ff2e63 0%, #ff8e53 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #ff2e63 0%, #e91e63 100%);
+        }
+        .glass-card {
+            background: rgba(26, 32, 53, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 46, 99, 0.45), 0 0 45px rgba(5, 217, 232, 0.2);
+            border-color: rgba(255, 46, 99, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-pinkAccent selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 glass-card border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white text-xl font-bold shadow-pink-glow">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wide text-white">CORE <span class="text-pinkAccent">SOLUTIONS</span></span>
+                    <span class="block text-xs text-mutedText font-medium">معاً لبيئة آمنة وخالية من التنمر</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 space-x-reverse text-sm font-semibold">
+                <a href="#about" class="text-gray-300 hover:text-pinkAccent transition-colors">عن المشكلة</a>
+                <a href="#types" onclick="switchTab('typesTab')" class="text-gray-300 hover:text-pinkAccent transition-colors">أنواع التنمر</a>
+                <a href="#types" onclick="switchTab('impactTab')" class="text-gray-300 hover:text-pinkAccent transition-colors">الآثار والنقاط الحرجة</a>
+                <a href="#report" class="text-gray-300 hover:text-pinkAccent transition-colors">البلاغ السري</a>
+                <a href="#quiz" class="text-gray-300 hover:text-pinkAccent transition-colors">اختبار التقييم الذاتي</a>
+            </nav>
+
+            <!-- Action CTA -->
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="#report" class="px-5 py-2.5 rounded-full text-sm font-bold gradient-bg text-white shadow-pink-glow hover:opacity-95 transition-transform active:scale-95 flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>أبلغ عن حالة</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="relative pt-12 pb-20 overflow-hidden">
+        <!-- Background Glowing Blobs -->
+        <div class="absolute top-1/4 right-10 w-96 h-96 bg-pinkAccent/15 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 left-10 w-80 h-80 bg-cyanAccent/10 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Content / Text -->
+                <div class="space-y-6 text-center lg:text-right">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pinkAccent/10 border border-pinkAccent/30 text-pinkAccent text-xs font-bold">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span>مبادرة التوعية الشاملة ضد التنمر</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-white">
+                        افهم المشكلة.. <br>
+                        <span class="gradient-text">وكن جزءاً من الحل</span>
+                    </h1>
+
+                    <p class="text-lg text-mutedText leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        التنمر سلوك عدواني متكرر يتضمن اختلالاً في موازين القوة. يمكن أن يحدث في المدارس، بيئات العمل، أو عبر الإنترنت. نهدف في منصة <strong>Core Solutions</strong> لإيجاد حلول جذرية للتصدي له بكل أشكاله.
+                    </p>
+
+                    <!-- Stat Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="glass-card p-4 rounded-2xl border-r-4 border-r-pinkAccent">
+                            <div class="text-3xl font-black text-white">1 من 3</div>
+                            <div class="text-xs text-mutedText mt-1">طلاب يتعرضون للتنمر عالمياً</div>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl border-r-4 border-r-cyanAccent">
+                            <div class="text-3xl font-black text-white">+20%</div>
+                            <div class="text-xs text-mutedText mt-1">ارتفاع حالات التنمر الإلكتروني</div>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl border-r-4 border-r-pinkAccent col-span-2 sm:col-span-1">
+                            <div class="text-3xl font-black text-white">100%</div>
+                            <div class="text-xs text-mutedText mt-1">سرية تامة للإبلاغ والدعم</div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="#types" onclick="switchTab('typesTab')" class="px-8 py-3.5 rounded-full font-bold bg-cardHover hover:bg-gray-700 text-white transition">
+                            استكشف أنواع التنمر
+                        </a>
+                        <a href="#report" class="px-8 py-3.5 rounded-full font-bold gradient-bg text-white shadow-pink-glow hover:opacity-90 transition">
+                            قدم بلاغاً آمناً الآن
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Visual / Interactive Feature -->
+                <div class="relative">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-gray-700/60 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
+                            <span class="text-sm font-bold text-gray-300 flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-pinkAccent animate-pulse"></span>
+                                الحقائق الأبرز حول الظاهرة
+                            </span>
+                            <span class="text-xs text-pinkAccent bg-pinkAccent/10 px-3 py-1 rounded-full font-semibold">ملخص البرزنتيشن</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-cardBg/90 p-4 rounded-xl border border-gray-700/50 flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-lg bg-pinkAccent/20 text-pinkAccent flex items-center justify-center shrink-0 text-xl font-bold">
+                                    <i class="fa-solid fa-user-xmark"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">السلوك العدواني المتكرر</h4>
+                                    <p class="text-xs text-mutedText mt-1">أذى متعمد ومستمر يستهدف الأفراد لفظياً، جسدياً أو نفسياً.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-cardBg/90 p-4 rounded-xl border border-gray-700/50 flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-lg bg-cyanAccent/20 text-cyanAccent flex items-center justify-center shrink-0 text-xl font-bold">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">التنمر الرقمي (Cyberbullying)</h4>
+                                    <p class="text-xs text-mutedText mt-1">ملاحقة الضحية على مدار الساعة عبر شبكات التواصل والرسائل الضارة.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-cardBg/90 p-4 rounded-xl border border-gray-700/50 flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 text-xl font-bold">
+                                    <i class="fa-solid fa-users-viewfinder"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">قوة الشهود والمراقبين (Bystanders)</h4>
+                                    <p class="text-xs text-mutedText mt-1">تدخل الشهود والدفاع عن الضحية يوقف التنمر خلال ثوانٍ معدودة.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-gray-700/50 flex justify-between items-center text-xs text-mutedText">
+                            <span>Core Solutions Framework</span>
+                            <span class="text-pinkAccent font-bold">إستراتيجيات التغيير</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Tabs: Types & Causes -->
+    <section id="types" class="py-16 bg-cardBg/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-black text-white mb-4">أنواع التنمر والأسباب الرئيسية</h2>
+                <p class="text-mutedText">فهم الدوافع والأشكال المختلفة للتنمر يساعدنا في بناء آليات مواجهة فعالة وحماية أفراد المجتمع.</p>
+            </div>
+
+            <!-- Custom Interactive Tab Switcher -->
+            <div class="flex justify-center mb-10">
+                <div class="glass-card p-1.5 rounded-2xl flex gap-2 max-w-xl w-full">
+                    <button onclick="switchTab('typesTab')" id="btn-typesTab" class="flex-1 py-3 px-4 rounded-xl text-sm font-bold transition-all gradient-bg text-white shadow-pink-glow">
+                        <i class="fa-solid fa-shapes ml-2"></i>أنواع التنمر
+                    </button>
+                    <button onclick="switchTab('causesTab')" id="btn-causesTab" class="flex-1 py-3 px-4 rounded-xl text-sm font-bold transition-all text-gray-400 hover:text-white">
+                        <i class="fa-solid fa-circle-question ml-2"></i>الأسباب والدوافع
+                    </button>
+                    <button onclick="switchTab('impactTab')" id="btn-impactTab" class="flex-1 py-3 px-4 rounded-xl text-sm font-bold transition-all text-gray-400 hover:text-white">
+                        <i class="fa-solid fa-heart-crack ml-2"></i>الآثار والتأثير
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content 1: Types -->
+            <div id="typesTab" class="tab-pane grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-pinkAccent">
+                    <div class="w-14 h-14 rounded-2xl bg-pinkAccent/10 text-pinkAccent flex items-center justify-center text-2xl font-bold mb-5">
+                        <i class="fa-solid fa-hand-fist"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">التنمر الجسدي</h3>
+                    <p class="text-sm text-mutedText leading-relaxed mb-4">يشمل الضرب، الدفع، إتلاف الممتلكات الشخصية أو إلحاق الأذى البدني المباشر.</p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pinkAccent"></i> الضرب والدفع</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-pinkAccent"></i> سرقة أو تدمير الأغراض</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-cyanAccent">
+                    <div class="w-14 h-14 rounded-2xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-2xl font-bold mb-5">
+                        <i class="fa-solid fa-comment-slash"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">التنمر اللفظي</h3>
+                    <p class="text-sm text-mutedText leading-relaxed mb-4">النداء بألقاب مسيئة، الإهانات، السخرية، والتغرير بالألقاب والمضايقات الشفهية.</p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyanAccent"></i> الشتائم والتهديدات</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyanAccent"></i> التعليقات العرقية أو الشكلية</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-purple-500">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl font-bold mb-5">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">التنمر الاجتماعي</h3>
+                    <p class="text-sm text-mutedText leading-relaxed mb-4">تخريب العلاقات، الإبعاد والتهميش الممنهج، ونشر الشائعات المغرضة.</p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> الاستبعاد الاجتماعي</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> تشويه السمعة</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-t-amber-500">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl font-bold mb-5">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">التنمر الرقمي</h3>
+                    <p class="text-sm text-mutedText leading-relaxed mb-4">المضايقات عبر الوسائط الرقمية، الرسائل المؤذية، وتلفيق البيانات أو الصور.</p>
+                    <ul class="text-xs text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> ملاحقة إلكترونية 24/7</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> اختراق الحسابات وإفشاء البيانات</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Causes -->
+            <div id="causesTab" class="tab-pane hidden grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-bolt text-pinkAccent"></i>
+                        الأسباب الشائعة (Common Causes)
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="bg-cardBg p-4 rounded-xl flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-sm">1</span>
+                            <div>
+                                <h4 class="font-bold text-white">الرغبة في السيطرة والنفوذ</h4>
+                                <p class="text-xs text-mutedText">محاولة إثبات القوة والتحكم بالآخرين للشعور بالأهمية.</p>
+                            </div>
+                        </li>
+                        <li class="bg-cardBg p-4 rounded-xl flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-sm">2</span>
+                            <div>
+                                <h4 class="font-bold text-white">ضغط الأقران (Peer Pressure)</h4>
+                                <p class="text-xs text-mutedText">الانسياق خلف مجموعات المتربصين لكسب قبولهم الفكري.</p>
+                            </div>
+                        </li>
+                        <li class="bg-cardBg p-4 rounded-xl flex items-center gap-4">
+                            <span class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-sm">3</span>
+                            <div>
+                                <h4 class="font-bold text-white">نقص التعاطف والتوعية</h4>
+                                <p class="text-xs text-mutedText">ضعف القدرة على مراعاة مشاعر الآخرين وفهم آثار الأذى النفسي.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-sitemap text-cyanAccent"></i>
+                        العوامل المساهمة (Contributing Factors)
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl bg-cardBg border border-gray-700/50">
+                            <div class="font-bold text-cyanAccent mb-1"><i class="fa-solid fa-house ml-2"></i>البيئة الأسريّة</div>
+                            <p class="text-sm text-mutedText">التفكك الأسري أو التعرض للعنف والاضطهاد داخل المنزلي يولد سلوكيات عدوانية خارجها.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-cardBg border border-gray-700/50">
+                            <div class="font-bold text-cyanAccent mb-1"><i class="fa-solid fa-hashtag ml-2"></i>تأثير وسائل التواصل</div>
+                            <p class="text-sm text-mutedText">غياب الرقابة وتوافر المجهولية يشجعان على ممارسات التنمر الرقمي بدون خوف من العقاب.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-cardBg border border-gray-700/50">
+                            <div class="font-bold text-cyanAccent mb-1"><i class="fa-solid fa-scale-unbalanced ml-2"></i>المعايير الثقافية السلبية</div>
+                            <p class="text-sm text-mutedText">تقبل الأسلوب الساخر والعدواني كنوع من "الدعابة" دون دراية بحجم الضرر.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 3: Impact -->
+            <div id="impactTab" class="tab-pane hidden grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card p-8 rounded-3xl border-r-4 border-r-pinkAccent">
+                    <h3 class="text-2xl font-bold text-white mb-4">التأثير على الضحايا (Victims)</h3>
+                    <p class="text-sm text-mutedText mb-6">يترك التنمر آثاراً عميقة طويلة الأجل تتطلب تدخلاً ودعماً نفسياً مكثفاً.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-cardBg rounded-xl">
+                            <div class="text-pinkAccent font-bold text-base mb-1">الآثار النفسية</div>
+                            <ul class="text-xs text-gray-300 space-y-1">
+                                <li>• القلق والاكتئاب الحاد</li>
+                                <li>• تدني تدريجي في تقدير الذات</li>
+                                <li>• الشعور بالعزلة والخوف</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 bg-cardBg rounded-xl">
+                            <div class="text-pinkAccent font-bold text-base mb-1">الآثار الجسدية والأكاديمية</div>
+                            <ul class="text-xs text-gray-300 space-y-1">
+                                <li>• اضطرابات النوم والأرق</li>
+                                <li>• تراجع الأداء الدراسي والمهني</li>
+                                <li>• الهروب والغياب المتكرر</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl border-r-4 border-r-cyanAccent">
+                    <h3 class="text-2xl font-bold text-white mb-4">المخاطر على المتنمرين (Perpetrators)</h3>
+                    <p class="text-sm text-mutedText mb-6">لا تقتصر الأضرار على الضحايا فقط، بل تمتد لتؤثر سلباً على مستقبل السلوك العدواني.</p>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-3 p-3 bg-cardBg rounded-xl text-gray-200">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
+                            <span>ارتفاع نسبة ممارسة العنف في مرحلة البلوغ</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-cardBg rounded-xl text-gray-200">
+                            <i class="fa-solid fa-gavel text-amber-400"></i>
+                            <span>زيادة احتمالية التورط في مشكلات قانونية وصراعات</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-cardBg rounded-xl text-gray-200">
+                            <i class="fa-solid fa-heart-crack text-amber-400"></i>
+                            <span>صعوبة بالغة في بناء واستمرار العلاقات الأسرية والمهنية السليمة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Quiz / Interactive Self Assessment -->
+    <section id="quiz" class="py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-10 border border-gray-700/70 shadow-pink-glow relative overflow-hidden">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-bold text-pinkAccent bg-pinkAccent/10 px-4 py-1.5 rounded-full">أداة تقييم تفاعلية</span>
+                    <h2 class="text-3xl font-black text-white mt-3">هل أنت أو أحد زملائك في بيئة غير آمنة؟</h2>
+                    <p class="text-mutedText text-sm mt-2">أجب على هذه الأسئلة السريعة للتعرف على المؤشرات الأوليّة للتنمر</p>
+                </div>
+
+                <form id="quizForm" class="space-y-6">
+                    <div class="bg-cardBg/90 p-5 rounded-2xl">
+                        <label class="block font-bold text-white mb-3 text-sm">1. هل تتعرض لمضايقات أو تعليقات ساخرة متكررة تجعلك تشعر بالضيق؟</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                                <input type="radio" name="q1" value="2" class="accent-pinkAccent"> نعم، بانتظام
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                                <input type="radio" name="q1" value="1" class="accent-pinkAccent"> أحياناً
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                                <input type="radio" name="q1" value="0" class="accent-pinkAccent"> نادراً أو أبداً
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="bg-cardBg/90 p-5 rounded-2xl">
+                        <label class="block font-bold text-white mb-3 text-sm">2. هل تلاحظ استبعادك المباشر أو التآمر لإبعادك عن المجموعات والأنشطة؟</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                                <input type="radio" name="q2" value="2" class="accent-pinkAccent"> نعم، باستمرار
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                                <input type="radio" name="q2" value="1" class="accent-pinkAccent"> يحدث بعض الأوقات
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                                <input type="radio" name="q2" value="0" class="accent-pinkAccent"> لا، إطلاقاً
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="bg-cardBg/90 p-5 rounded-2xl">
+                        <label class="block font-bold text-white mb-3 text-sm">3. هل تتلقى رسائل هجومية أو منشورات مسيئة على منصات التواصل الاجتماعي؟</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                                <input type="radio" name="q3" value="2" class="accent-pinkAccent"> نعم
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                                <input type="radio" name="q3" value="0" class="accent-pinkAccent"> لا
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="calculateQuiz()" class="w-full py-4 rounded-2xl font-bold gradient-bg text-white shadow-pink-glow hover:opacity-95 transition">
+                        عرض نتيجة التقييم التوجيهي
+                    </button>
+                </form>
+
+                <div id="quizResult" class="hidden mt-8 p-6 bg-cardBg rounded-2xl text-center border border-pinkAccent/40">
+                    <h4 id="resultTitle" class="text-xl font-bold text-white mb-2"></h4>
+                    <p id="resultDesc" class="text-sm text-mutedText mb-4"></p>
+                    <a href="#report" class="inline-block px-6 py-2.5 rounded-full text-xs font-bold bg-pinkAccent text-white">انتقل إلى نموذج الإبلاغ أو التحدث لمختص</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anonymous Reporting Tool (البلاغ السري) -->
+    <section id="report" class="py-16 bg-cardBg/30 border-t border-b border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyanAccent/10 text-cyanAccent text-xs font-bold mb-3">
+                    <i class="fa-solid fa-user-ninja"></i>
+                    <span>حماية كاملة وهوية مشفرة</span>
+                </div>
+                <h2 class="text-3xl font-black text-white">نموذج الإبلاغ الآمن والسري</h2>
+                <p class="text-sm text-mutedText mt-2">إذا كنت ضحية أو شاهدت حادثة تنمر، يمكنك الإبلاغ هنا دون الحاجة للكشف عن اسمك أو بياناتك الشخصية.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl">
+                <form id="reportForm" onsubmit="handleReportSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-300 mb-2">نوع الحادثة</label>
+                            <select class="w-full bg-cardBg border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pinkAccent">
+                                <option>تنمر إلكتروني عبر الإنترنت</option>
+                                <option>تنمر لفظي أو إهانات</option>
+                                <option>تنمر جسدي مباشر</option>
+                                <option>إبعاد واستبعاد اجتماعي</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-300 mb-2">مكان الحدوث</label>
+                            <select class="w-full bg-cardBg border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-pinkAccent">
+                                <option>المدرسة / الجامعة</option>
+                                <option>مكان العمل</option>
+                                <option>وسائل التواصل الاجتماعي</option>
+                                <option>أخرى</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-2">تفاصيل الحادثة (اختر التوضيح الآمن)</label>
+                        <textarea rows="4" required placeholder="اكتب وصفاً مختصراً لما حدث... لن يتم مشاركة معلوماتك مع أي طرف خارج فريق الدعم." class="w-full bg-cardBg border border-gray-700 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-pinkAccent resize-none"></textarea>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" id="anonCheck" checked class="w-5 h-5 accent-pinkAccent rounded">
+                        <label for="anonCheck" class="text-xs text-gray-300">إرسال كـ بلاغ سري مجهول الهوية بالكامل (Anonymous Report)</label>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl font-bold gradient-bg text-white shadow-pink-glow hover:opacity-95 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>إرسال البلاغ بشكل آمن</span>
+                    </button>
+                </form>
+
+                <div id="reportSuccess" class="hidden text-center py-8">
+                    <div class="w-16 h-16 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-3xl mx-auto mb-4">
+                        <i class="fa-solid fa-shield-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">تم تسلم البلاغ بنجاح وسرية!</h3>
+                    <p class="text-sm text-mutedText">شكراً لشجاعتك. سيتولى فريق المبادرة والجهات المختصة دراسة الحالة والتدخل لحماية البيئة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bystanders & Prevention Strategies (إستراتيجيات المواجهة) -->
+    <section id="solutions" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-black text-white">إستراتيجيات المواجهة وتأثير الشهود</h2>
+                <p class="text-mutedText">التصدي للتنمر يتطلب تضافر جهود المجتمع والأفراد لبناء بيئة قائمة على الاحترام والتعاطف.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Power of Bystanders -->
+                <div class="glass-card p-6 rounded-3xl border-t-4 border-t-pinkAccent">
+                    <div class="text-pinkAccent font-bold text-sm mb-2">دور الشهود والمراقبين</div>
+                    <h3 class="text-xl font-bold text-white mb-4">The Power of Witnesses</h3>
+                    <p class="text-xs text-mutedText leading-relaxed mb-6">يقوم الشهود بدور محوري؛ فتدخلهم السريع يوقف حادثة التنمر خلال ثوانٍ معدودة في معظم الحالات.</p>
+                    <ul class="space-y-3 text-xs text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-pinkAccent"></i> <strong>التحدث بأمان:</strong> الرفض المباشر للعدوان</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-pinkAccent"></i> <strong>مساندة الضحية:</strong> الوقوف بجانبها وعدم تركها منفردة</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-pinkAccent"></i> <strong>الإبلاغ الفوري:</strong> إيصال الحادثة لمرجعية مسؤولة</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Prevention Strategies -->
+                <div class="glass-card p-6 rounded-3xl border-t-4 border-t-cyanAccent">
+                    <div class="text-cyanAccent font-bold text-sm mb-2">إستراتيجيات الوقاية</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Building a Safe Environment</h3>
+                    <p class="text-xs text-mutedText leading-relaxed mb-6">بناء بيئة آمنة يعتمد على التوعية والسن الواضح للقواعد والتعامل الحازم مع التجاوزات.</p>
+                    <ul class="space-y-3 text-xs text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-cyanAccent"></i> تعزيز ثقافة التعاطف والاحترام المتبادل</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-cyanAccent"></i> وضع سياسات واضحة وعواقب صارمة للتنمر</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-cyanAccent"></i> فتح قنوات تواصل دائم وبناء ثقة</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Digital Safety -->
+                <div class="glass-card p-6 rounded-3xl border-t-4 border-t-amber-500">
+                    <div class="text-amber-400 font-bold text-sm mb-2">السلامة الرقمية</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Digital Safety Tips</h3>
+                    <p class="text-xs text-mutedText leading-relaxed mb-6">نصائح أساسية لتجنب ومواجهة التنمر الإلكتروني في الفضاء الرقمي.</p>
+                    <ul class="space-y-3 text-xs text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-amber-400"></i> حماية الحسابات والمعلومات الشخصية</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-amber-400"></i> حظر والمطالبة بإزالة المحتوى المسيء</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-circle-dot text-amber-400"></i> الاحتفاظ بأدلة ولقطات الشاشة للرسائل</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Conclusion Slide Theme -->
+    <footer class="bg-darkBg border-t border-gray-800 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 rounded-3xl text-center mb-8 bg-gradient-to-r from-pinkAccent/10 via-cardBg to-cyanAccent/10 border-pinkAccent/30">
+                <h3 class="text-3xl font-black text-white mb-3">معاً نصل لبيئة آمنة للجميع</h3>
+                <p class="text-sm text-gray-300 max-w-xl mx-auto mb-6">"Together, we can build a world where everyone feels safe, valued, and respected."</p>
+                <a href="#report" class="inline-block px-8 py-3 rounded-full font-bold gradient-bg text-white shadow-pink-glow hover:opacity-90">
+                    انضم للمبادرة وشارك في التغيير
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between border-t border-gray-800 pt-6 text-xs text-mutedText">
+                <div class="flex items-center gap-2 mb-4 md:mb-0">
+                    <span class="font-bold text-white">CORE SOLUTIONS</span>
+                    <span>&copy; 2026 جميع الحقوق محفوظة - مبادرة التوعية ضد التنمر</span>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#about" class="hover:text-pinkAccent">عن المبادرة</a>
+                    <a href="#report" class="hover:text-pinkAccent">الإبلاغ السري</a>
+                    <a href="#types" onclick="switchTab('typesTab')" class="hover:text-pinkAccent">الدليل التوعوي</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Tab Switcher Function
+        function switchTab(tabId) {
+            // Hide all panes
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.add('hidden');
+            });
+            // Show selected pane
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Reset buttons
+            const buttons = ['typesTab', 'causesTab', 'impactTab'];
+            buttons.forEach(id => {
+                const btn = document.getElementById('btn-' + id);
+                if (id === tabId) {
+                    btn.className = "flex-1 py-3 px-4 rounded-xl text-sm font-bold transition-all gradient-bg text-white shadow-pink-glow";
+                } else {
+                    btn.className = "flex-1 py-3 px-4 rounded-xl text-sm font-bold transition-all text-gray-400 hover:text-white";
+                }
+            });
+        }
+
+        // Quiz Calculation
+        function calculateQuiz() {
+            const form = document.getElementById('quizForm');
+            const q1 = parseInt(form.elements['q1']?.value || 0);
+            const q2 = parseInt(form.elements['q2']?.value || 0);
+            const q3 = parseInt(form.elements['q3']?.value || 0);
+            
+            const total = q1 + q2 + q3;
+            const resultDiv = document.getElementById('quizResult');
+            const title = document.getElementById('resultTitle');
+            const desc = document.getElementById('resultDesc');
+
+            resultDiv.classList.remove('hidden');
+
+            if (total >= 4) {
+                title.innerText = "مؤشرات مرتفعة للتعرض للتنمر السلبي";
+                title.className = "text-xl font-bold text-pinkAccent mb-2";
+                desc.innerText = "تشير إجاباتك إلى وجود بيئة ضاغطة ومضايقات متكررة. ننصحك بالتحدث إلى مستشار أو تقديم بلاغ سري عبر المنصة.";
+            } else if (total >= 2) {
+                title.innerText = "مؤشرات متوسطة / مضايقات متفرقة";
+                title.className = "text-xl font-bold text-amber-400 mb-2";
+                desc.innerText = "هناك بعض الممارسات المزعجة التي قد تتطور. من المهم وضع حدود واضحة والإبلاغ في حال تكرار السلوك.";
+            } else {
+                title.innerText = "البيئة آمنة حالياً";
+                title.className = "text-xl font-bold text-green-400 mb-2";
+                desc.innerText = "إجاباتك تشير لعدم وجود مؤشرات خطر، استمر في مساندة زملائك ونشر ثقافة الاحترام.";
+            }
+        }
+
+        // Report Form Simulation
+        function handleReportSubmit(e) {
+            e.preventDefault();
+            document.getElementById('reportForm').classList.add('hidden');
+            document.getElementById('reportSuccess').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
